@@ -57,15 +57,26 @@ I have spent years building both, deliberately.
 runs their own AI assistants, shared versioned documentation
 is what keeps three people and six agents pointed in the same direction.
 
+**Built to be maintained by agents.** Every project I have going is
+designed to be maintained through agentic workflows, with me deciding.
+That is why the documentation is written for a reader who remembers
+nothing of the last session, why the same checks run locally before
+a commit and on the forge after it, and why I lean on test-first
+development and deterministic tools. A failing test is an instruction
+no agent can misread; a linter gives the same answer twice. A model's
+judgement varies from one run to the next, so the scaffolding around it must not.
+
 ## What I do
 
 <!-- skills cartography: SVG pending, see chantier 6 -->
 
 Backend and tooling in Python. JavaScript at both ends,
 Node on the server, plain HTML and CSS when that is what
-the job actually needs. Shell for most of the rest. Swift
-for native macOS, picked up in October 2026 for `talk-timer`. Currently
-learning Rust, and starting C.
+the job actually needs. TypeScript on Deno when one core has to serve
+both a command line and a browser extension. Shell for most of the rest.
+Go for a few projects. Swift for native macOS, picked up in October 2026:
+`talk-timer`, my first, is nearly done. Rust, which I am now at ease in,
+from a cyber-watch CLI to `beezier`. ~~Starting C.~~
 
 I work headless by preference. Appending a line to a file should
 take a second, not ten minutes of hunting for the right button,
@@ -73,6 +84,11 @@ and when the line does not go at the end, I open it in Vim,
 which I came to late and now would not give up. That taste goes
 back to BASIC,DOS and Fidonet: I would rather know how a thing works
 underneath than know where its interface put the switch.
+
+On the security side, I work the domain-name end of phishing: Unicode
+confusables and IDN display policies (UTS #39, IDNA), and passive OSINT
+on lookalike domains, from registration data and DNS history to
+certificate transparency logs.
 
 Alongside that: data protection and GDPR compliance, risk analysis
 with the EBIOS RM framework, threat modelling, and AI governance —
@@ -98,6 +114,49 @@ new API goes in. The development log pairs each new Swift notion with its
 Python, Ruby or Rust equivalent.
 > Swift, SwiftUI and AppKit, Apache-2.0. In development, for the Mac App Store.
 
+**[`beezier`](https://github.com/caffe-doppio/beezier)**
+keeps 2FA recovery codes and recovery keys in one local vault, encrypted
+with age, and knows which codes were used, when, and how many are left.
+It imports the files services hand out, text or PDF, then removes,
+encrypts or keeps the plaintext export, as you choose. The vault is a
+standard age file: if beezier disappears, `age -d` still opens it.
+
+Built from a threat model rather than a feature list. The spec maps where
+plaintext lives at each step of each user journey. Untrusted exports are
+parsed before the vault is unlocked, PDFs in a separate process; every save
+is atomic, and a vault written by a newer version is refused rather than
+rewritten. Backup keys are plain age recipients: an SSH key, a paper key,
+a YubiKey or the Secure Enclave through plugins. The TUI gives every action
+a letter, so a phone keyboard over SSH reaches all of them, copies through
+OSC 52, and takes its colours from measured contrast on light and dark
+terminals. CI runs on three OSes with gitleaks, including a rule that catches
+recovery codes themselves, and `cargo audit` weekly. A decision log records
+thirty choices, one of them reversed, and why.
+> Rust and ratatui, EUPL-1.2. In development.
+
+**`homoeye`**
+checks a link for homoglyphs before anyone opens it, without ever contacting
+the domain: no DNS query, no request. It flags mixed scripts, invisible and
+bidi characters, and whole-script lookalikes. Given a list of protected
+brands, it catches `аррӏө.com`, Cyrillic letters with a barred o standing in
+for the e, which current Chromium and Firefox display as plain Unicode,
+with no warning.
+`--explain` shows why, character by character: code point, Unicode name,
+script, and which reading turned it into the brand.
+
+It started in Python and moved to TypeScript on Deno once a browser extension
+had to share its core. The core is runtime-free. The Unicode 18 tables are
+generated from the UCD, each source pinned by its sha256, and Chromium's own
+lookalike rules come in at a pinned commit. A 60-case corpus is the oracle,
+its expected UTS #39 skeletons computed by an independent script. Every rule
+was mutation-tested, and a first measurement on 1,480 real IDNs from the
+Tranco list raised no alert from the brand-free rules. The compiled binary
+holds no permission and cannot reach the network. And since an AI assistant's
+editing tool once slipped a raw right-to-left override into the tests, a test
+now runs homoeye's own tables over the whole repository.
+> TypeScript on Deno, EUPL-1.2. Pre-alpha; the repository opens with
+> the first release.
+
 **[`gitkeep`](https://framagit.org/caffe-doppio/gitkeep-pipx)**
 walks a tree bottom-up and drops a `.gitkeep` into every empty directory,
 so Git actually tracks the scaffolding you designed. It reads
@@ -111,6 +170,9 @@ Mirroring a selection here is on the list, below.
 
 ## Currently
 
+- [ ] Taking `homoeye` to a first public release: CI, signed binaries,
+      then a Firefox extension on the same core, for organisations to
+      deploy with their own list of protected brands.
 - [ ] Taking `talk-timer` to the Mac App Store, free. The planner works;
       wiring Start to the floating bar is next.
 - [ ] A web companion to `dechetri-cli`, my waste-collection scheduler. The
