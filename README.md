@@ -63,7 +63,8 @@ is what keeps three people and six agents pointed in the same direction.
 
 Backend and tooling in Python. JavaScript at both ends,
 Node on the server, plain HTML and CSS when that is what
-the job actually needs. Shell for most of the rest. Currently
+the job actually needs. Shell for most of the rest. Swift
+for native macOS, picked up in October 2026 for `talk-timer`. Currently
 learning Rust, and starting C.
 
 I work headless by preference. Appending a line to a file should
@@ -80,6 +81,23 @@ conventions I'd apply to code.
 
 ## Selected work
 
+**[`talk-timer`](https://github.com/caffe-doppio/talk-timer)**
+plans a talk as blocks inside a total that cannot overflow: lengthening
+one block spends the margin, and when the margin is gone, something else
+gets shorter. On stage, a floating glass bar above the slides shows
+the current block draining away and, near its end, the transition line
+to the next one. It never cuts the speaker off.
+
+My first Swift project, built like anything else I ship. The spec comes
+first and the code cites its sections; its acceptance criteria run as tests.
+The model is a library with no UI framework in it, and every time computation
+takes `now` as a parameter. A glossary checked in CI gives each concept one name
+per language, English and French. No network, no telemetry, a sandbox with
+three entitlements, and a matrix of App Store requirements consulted before any
+new API goes in. The development log pairs each new Swift notion with its
+Python, Ruby or Rust equivalent.
+> Swift, SwiftUI and AppKit, Apache-2.0. In development, for the Mac App Store.
+
 **[`gitkeep`](https://framagit.org/caffe-doppio/gitkeep-pipx)**
 walks a tree bottom-up and drops a `.gitkeep` into every empty directory,
 so Git actually tracks the scaffolding you designed. It reads
@@ -93,6 +111,8 @@ Mirroring a selection here is on the list, below.
 
 ## Currently
 
+- [ ] Taking `talk-timer` to the Mac App Store, free. The planner works;
+      wiring Start to the floating bar is next.
 - [ ] A web companion to `dechetri-cli`, my waste-collection scheduler. The
       hard part is already done: the local open-data API is genuinely painful,
       and it now yields usable `.ics` calendars. The web version exists to plug
@@ -106,7 +126,7 @@ Mirroring a selection here is on the list, below.
       hand-writing API calls.
 - [ ] Mirroring two or three of the above here.
 
-<sub>Last reviewed: September 2026. If these boxes have not moved
+<sub>Last reviewed: October 2026. If these boxes have not moved
 in a while, that is information too.</sub>
 
 ## Contact
