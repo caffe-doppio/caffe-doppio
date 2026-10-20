@@ -99,6 +99,15 @@ conventions I'd apply to code.
 
 ## Selected work
 
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-5FA04E?logo=nodedotjs&logoColor=white)
+![Fastify](https://img.shields.io/badge/Fastify-000000?logo=fastify&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-4169E1?logo=postgresql&logoColor=white)
+![Vue](https://img.shields.io/badge/Vue-4FC08D?logo=vuedotjs&logoColor=white)
+![Go](https://img.shields.io/badge/Go-00ADD8?logo=go&logoColor=white)
+![Private](https://img.shields.io/badge/private-lightgrey)
+![In development](https://img.shields.io/badge/in_development-orange)
+
 **A GDPR compliance app** <sub>client work, private</sub>
 is a data-governance web app for a small business with nobody dedicated
 to data protection. A record of processing activities is the base;
@@ -129,6 +138,11 @@ against one shared, versioned schema.
 > TypeScript on Node (Fastify, Kysely), PostgreSQL, Vue, Go.
 > In development since October 2026.
 
+![Swift](https://img.shields.io/badge/Swift-F05138?logo=swift&logoColor=white)
+![macOS](https://img.shields.io/badge/macOS-000000?logo=apple&logoColor=white)
+![Apache-2.0](https://img.shields.io/badge/Apache--2.0-blue)
+![In development](https://img.shields.io/badge/in_development-orange)
+
 **[`talk-timer`](https://github.com/caffe-doppio/talk-timer)**
 plans a talk as blocks inside a total that cannot overflow: lengthening
 one block spends the margin, and when the margin is gone, something else
@@ -145,6 +159,11 @@ three entitlements, and a matrix of App Store requirements consulted before any
 new API goes in. The development log pairs each new Swift notion with its
 Python, Ruby or Rust equivalent.
 > Swift, SwiftUI and AppKit, Apache-2.0. In development, for the Mac App Store.
+
+![Rust](https://img.shields.io/badge/Rust-000000?logo=rust&logoColor=white)
+![ratatui](https://img.shields.io/badge/ratatui-555555)
+![EUPL-1.2](https://img.shields.io/badge/EUPL--1.2-blue)
+![In development](https://img.shields.io/badge/in_development-orange)
 
 **[`beezier`](https://github.com/caffe-doppio/beezier)**
 keeps 2FA recovery codes and recovery keys in one local vault, encrypted
@@ -165,6 +184,11 @@ terminals. CI runs on three OSes with gitleaks, including a rule that catches
 recovery codes themselves, and `cargo audit` weekly. A decision log records
 thirty choices, one of them reversed, and why.
 > Rust and ratatui, EUPL-1.2. In development.
+
+![TypeScript](https://img.shields.io/badge/TypeScript-3178C6?logo=typescript&logoColor=white)
+![Deno](https://img.shields.io/badge/Deno-000000?logo=deno&logoColor=white)
+![EUPL-1.2](https://img.shields.io/badge/EUPL--1.2-blue)
+![Pre-alpha](https://img.shields.io/badge/pre--alpha-yellow)
 
 **`homoeye`**
 checks a link for homoglyphs before anyone opens it, without ever contacting
@@ -188,6 +212,9 @@ editing tool once slipped a raw right-to-left override into the tests, a test
 now runs homoeye's own tables over the whole repository.
 > TypeScript on Deno, EUPL-1.2. Pre-alpha; the repository opens with
 > the first release.
+
+![Python](https://img.shields.io/badge/Python-3776AB?logo=python&logoColor=white)
+![AGPL-3.0](https://img.shields.io/badge/AGPL--3.0-blue)
 
 **[`gitkeep`](https://framagit.org/caffe-doppio/gitkeep-pipx)**
 walks a tree bottom-up and drops a `.gitkeep` into every empty directory,
