@@ -74,9 +74,11 @@ Backend and tooling in Python. JavaScript at both ends,
 Node on the server, plain HTML and CSS when that is what
 the job actually needs. TypeScript on Deno when one core has to serve
 both a command line and a browser extension. Shell for most of the rest.
-Go for a few projects. Swift for native macOS, picked up in October 2026:
+TypeScript on Node with Fastify, PostgreSQL and Vue for web apps.
+Go for codebase-analysis tooling, where the output has to be the same
+twice. Swift for native macOS, picked up in October 2026:
 `talk-timer`, my first, is nearly done. Rust, which I am now at ease in,
-from a cyber-watch CLI to `beezier`. ~~Starting C.~~
+from a cyber-watch CLI to `beezier`.
 
 I work headless by preference. Appending a line to a file should
 take a second, not ten minutes of hunting for the right button,
@@ -96,6 +98,36 @@ the frameworks and the paperwork, applied with the same
 conventions I'd apply to code.
 
 ## Selected work
+
+**A GDPR compliance app** <sub>client work, private</sub>
+is a data-governance web app for a small business with nobody dedicated
+to data protection. A record of processing activities is the base;
+data subject requests, breach handling and a threat model are built on it,
+since none of them means anything without knowing what is processed.
+The app investigates and proposes. Legal basis, retention periods and
+breach notification stay a human decision, by design.
+
+Ports and adapters, five ports and nothing else crossing the boundary.
+Each layer owns one thing: PostgreSQL the integrity, the domain the
+business rules, as pure functions that read the time from a clock port,
+route schemas the contract, Vue the display. The browser never recomputes
+what the server decided. Specs live in their own repository, and every
+test names the requirement or rule it protects.
+
+Around it, a layer of analysis tools in Go. Four of them survey the
+codebase: what each file declares, which requirement each test protects,
+who writes and reads each table, what each file imports, cites and leaves
+to do. Each writes Markdown and JSON from the same survey, committed and
+free of line numbers, so a merge request diff shows facts that changed
+and nothing else; CI regenerates them and fails on drift. One of them
+refuses a table without a declared writer and reader: a personal-data
+table nobody reads is processing without a purpose. A fifth, `whatsthis`,
+joins the snapshots and answers "what is this?" for a file, a symbol,
+a table or a rule ID, rendered in the terminal for me and as JSON for an
+agent, from the same facts CI checks. Every snapshot is decoded strictly
+against one shared, versioned schema.
+> TypeScript on Node (Fastify, Kysely), PostgreSQL, Vue, Go.
+> In development since October 2026.
 
 **[`talk-timer`](https://github.com/caffe-doppio/talk-timer)**
 plans a talk as blocks inside a total that cannot overflow: lengthening
